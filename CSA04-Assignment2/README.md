@@ -7,7 +7,7 @@
 ## Student details
 - Name: Kishore Kumar S
 - Register number: 192565013
-- GitHub repository: `CSA04-<192565013>-Assignment2
+- GitHub repository: https://github.com/Kishore-2008-05/CSA-0421-192565013-Assignments/tree/main/CSA04-Assignment2
 - Compiler: gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0
 - Linux distribution/version: 26.04.1 LTS (Resolute Raccoon)"
 
