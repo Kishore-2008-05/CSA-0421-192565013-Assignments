@@ -1,0 +1,5 @@
+page_size_bytes,total_internal_waste_bytes,average_waste_bytes_per_process
+1024,53150,531.50
+4096,212894,2128.94
+2097152,107413406,1074134.06
+Fixed seed 192565013; process sizes uniformly sampled from 1 byte to 50 MiB.
