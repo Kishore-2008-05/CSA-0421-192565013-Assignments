@@ -22,8 +22,8 @@ run co3_q1_dlopen ./link_demo
 run co3_q1_ldd ldd ./link_dynamic_demo
 stat -c '%n %s bytes' link_static_demo link_dynamic_demo | tee "$OUT/co3_q1_sizes.txt"
 
-cd "$D3/Task02"; gcc -std=c11 -Wall -Wextra paging_translation.c -o paging_translation; run co3_q2 ./paging_translation
-cd "$D3/Task03"; gcc -std=c11 -Wall -Wextra segmentation.c -o segmentation; run co3_q3 ./segmentation
+cd "$D3/Task02"; gcc -std=c11 -Wall -Wextra paging_translation.c -o paging_translation; gcc -std=c11 -Wall -Wextra paging_fragmentation.c -o paging_fragmentation; run co3_q2 ./paging_translation; run co3_q2_fragmentation ./paging_fragmentation
+cd "$D3/Task03"; gcc -std=c11 -Wall -Wextra segmentation.c -o segmentation; gcc -std=c11 -Wall -Wextra segmentation_fragmentation.c -o segmentation_fragmentation; run co3_q3 ./segmentation; run co3_q3_fragmentation ./segmentation_fragmentation
 cd "$D3/Task04"; gcc -std=c11 -Wall -Wextra demand_paging.c -o demand_paging; run co3_q4 ./demand_paging 16
 cd "$D3/Task05"; gcc -std=c11 -Wall -Wextra page_replacement.c -o page_replacement; gcc -std=c11 -Wall -Wextra page_replacement_experiment.c -o page_replacement_experiment; run co3_q5 ./page_replacement; ./page_replacement_experiment > "$OUT/co3_q5_experiment.csv" 2> "$OUT/co3_q5_timing.txt"
 cd "$D3/Task06"; gcc -std=c11 -Wall -Wextra raid_capacity.c -o raid_capacity; run co3_q6 ./raid_capacity
