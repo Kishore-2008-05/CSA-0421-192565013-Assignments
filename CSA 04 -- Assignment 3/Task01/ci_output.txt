@@ -1,0 +1,14 @@
+Static/object-linked library version: crypto-plugin-v1
+Sample transform executed by shared library.
+Startup dynamic library version: crypto-plugin-v1
+Sample transform executed by shared library.
+Main function address: 0x5d0923d703f0
+Loaded library version: crypto-plugin-v1
+Sample transform executed by shared library.
+Mapped executable/shared-library regions:
+5d0923d6f000-5d0923d70000 r--p 00000000 /tmp/link_demo
+5d0923d70000-5d0923d71000 r-xp 00001000 /tmp/link_demo
+742503b23000-742503b24000 r--p 00000000 .../Task01/libcrypto_plugin.so
+742503b24000-742503b25000 r-xp 00001000 .../Task01/libcrypto_plugin.so
+
+Note: virtual addresses and paths vary on each run because of ASLR and runner workspace.
