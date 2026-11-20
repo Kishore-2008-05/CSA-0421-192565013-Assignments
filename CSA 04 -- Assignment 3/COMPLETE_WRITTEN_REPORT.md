@@ -23,7 +23,7 @@
 | Reliability | Fewer runtime library dependencies | Missing/incompatible .so can prevent start-up |
 | Security maintenance | Rebuild every executable | Patch shared library and validate ABI compatibility |
 
-Position-independent code (PIC) uses relocatable addressing so a shared object can be mapped at different virtual addresses. The Task01 source demonstrates `dlopen`, `dlsym`, error handling and a small shared object. Run `ldd`, compare `stat -c %s`, and inspect `/proc/<pid>/maps` while the process is alive. Use `/usr/bin/time -v` and `/usr/bin/time -f '%e %M'` for elapsed time and peak RSS; run multiple trials and report median values.
+Position-independent code (PIC) uses relocatable addressing so a shared object can be mapped at different virtual addresses. Task01 provides three separate demonstrations: object-linked static-style build (`link_static_demo.c`), startup shared-library linking (`link_dynamic_demo.c`) and runtime `dlopen/dlsym` (`link_demo.c`). The runtime program prints its executable/library mappings from `/proc/self/maps`. Run `ldd`, compare `stat -c %s`, and use `/usr/bin/time -v` for elapsed time and peak RSS; run multiple trials and report median values.
 
 **Decision:** use dynamically linked, versioned libraries for the bank's common encryption component, with package-managed updates, compatibility tests and rollback. Use `dlopen()` for optional algorithms not needed on every start. If the library is absent, check `dlerror()`, disable the optional feature safely and log a clear error; never silently fall back to insecure encryption.
 
@@ -87,7 +87,7 @@ A 24 GB process can run with 16 GB RAM if its active working set fits in availab
 
 Equal allocation gives each process the same frame count; proportional allocation gives frames based on process size; priority/working-set allocation is often better for interactive and critical workloads. Detect thrashing using sustained major faults, swap-in/out, low useful CPU throughput and PSI; reduce multiprogramming or memory pressure.
 
-Task04 touches one byte per page and reports minor/major fault deltas and a fork copy-on-write demonstration. Run with different memory sizes under a controlled VM/cgroup limit; do not deliberately exhaust the host. For 32 GB RAM, if the 24 GB workload's resident working set fits, faults reduce toward the no-fault baseline; the extra RAM cost must be compared with the measured time saved and workload frequency.
+Task04 touches one byte per page and reports minor/major fault deltas, then forks and writes a page to demonstrate copy-on-write. The GitHub Actions validation runs a small 8 MiB sample. Run with additional memory sizes under a controlled VM/cgroup limit; do not deliberately exhaust the host. For 32 GB RAM, if the 24 GB workload's resident working set fits, faults reduce toward the no-fault baseline; the extra RAM cost must be compared with the measured time saved and workload frequency.
 
 **Decision:** first improve locality, process only required image tiles and stream data; add RAM if the measured working set remains larger than physical memory. RAM avoids repeated disk faults, while locality improvements can reduce both RAM demand and I/O.
 
@@ -100,7 +100,7 @@ The supplied Task05 program reports:
 - Belady string: FIFO 3 frames 9 faults, 4 frames 10 faults.
 FIFO can have more faults after adding a frame because its resident sets are not a stack. LRU avoids this due to inclusion of the smaller-frame resident set in the larger-frame set.
 
-**Investigation:** generate deterministic locality-heavy and uniform-random streams; run 3–10 frames; plot faults; measure 100,000 references using a monotonic clock. Record seed, compiler flags and input size. For strong locality, LRU/Clock typically outperform FIFO; for random access, differences narrow. Recommend Clock or an LRU-family approximation for a general server because it captures recency with low kernel overhead; use measurements from the target workload.
+**Investigation:** `Task05/page_replacement_experiment.c` generates deterministic locality-heavy and uniform-random streams, runs 3–10 frames and prints CSV fault counts. The committed `ci_experiment_output.csv` can be plotted in Excel. The source measures runtime for 100,000 references using `clock()`; record your local compiler and timing because runtime is hardware dependent. Record seed, compiler flags and input size. For strong locality, LRU/Clock typically outperform FIFO; for random access, differences narrow. Recommend Clock or an LRU-family approximation for a general server because it captures recency with low kernel overhead; use measurements from the target workload.
 
 **Alternative – Clock:** one reference bit per frame plus a hand; on fault, clear set bits while scanning and replace the first zero bit. A full scan can be O(F) in the worst case for F frames, but amortised work is low; exact LRU updates each access and needs ordering metadata. Clock uses O(F) bits/metadata and should be compared empirically with LRU on both reference streams.
 
