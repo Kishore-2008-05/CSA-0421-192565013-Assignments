@@ -1,15 +1,15 @@
 # Automated validation record
 
 **Workflow:** Compile assignment programs  
-**Latest fully passing run:** [44757138964 – successful](https://github.com/Kishore-2008-05/CSA-0421-192565013-Assignments/actions/runs/44757138964)  
-**Commit tested:** `2e79d0980e31428338be0bfd7e930b509ad60687`
+**Latest fully passing run:** [44757260147 – successful](https://github.com/Kishore-2008-05/CSA-0421-192565013-Assignments/actions/runs/44757138964)  
+**Commit tested:** `d528166413325c1c28796b2d24b6804358075066`
 
 ## Checks that passed
 - GCC compilation of CO3 C programs, including static/object linking, shared-library linking, `dlopen/dlsym`, paging, segmentation, demand paging, page replacement and RAID capacity.
 - GCC compilation of CO4 C programs, including allocation, inode/bitmap calculation, all six disk scheduling algorithms, 10,000-request queue simulation and storage workload simulation.
 - Execution of the portable C programs and CO5 Bash log-analysis script.
 - The runtime-linking demo printed the executable and shared-library regions from `/proc/self/maps`.
-- The demand-paging demo touched 8 MiB and reported 2,047 minor faults and 0 major faults on that runner.
+- The demand-paging demo touched 8 MiB and reported 2,047 minor faults and 0 major faults on that runner. The 100,000-reference three-policy page-replacement experiment took 12.111 ms on this runner (hardware dependent).
 - The CO5 sample log summary matched the expected status counts, busiest client and total bytes.
 
 ## Selected verified outputs
