@@ -61,6 +61,18 @@ Containers share host kernel and start quickly with low memory overhead; kernel 
 ### A5.1 Service models and architecture
 IaaS supplies VMs/network/storage; PaaS manages runtime/platform; SaaS is a finished application. For result day, use a hybrid design: private environment for steady baseline and sensitive systems, public cloud managed Kubernetes/autoscaling for burst portal replicas, load balancer/WAF, managed highly available database, object storage for static assets and CDN. Encrypt in transit/at rest, private subnets, least-privilege IAM, backups and tested restore.
 
+Deployment sketch:
+```mermaid
+flowchart TD
+  Students --> DNS[DNS + CDN + WAF]
+  DNS --> LB[Cloud load balancer]
+  LB --> K8s[Kubernetes app replicas]
+  K8s --> DB[(Managed HA database)]
+  K8s --> Obj[Object storage]
+  K8s --> Logs[Central logs and metrics]
+  Private[Private campus baseline] <--> K8s
+```
+
 ### A5.2 Kubernetes
 A Pod is the smallest deployable unit; a Deployment maintains desired replicas and replaces failed Pods; a Service provides stable discovery/load balancing. Requests guide scheduling; limits constrain consumption. HPA adjusts replica count from CPU/memory/custom metrics. Readiness probes remove unready Pods from service; liveness probes restart unhealthy containers. Replicas and health checks improve availability but do not replace database HA or backups.
 
