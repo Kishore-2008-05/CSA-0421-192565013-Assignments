@@ -17,6 +17,17 @@
 ### 1.2 Improved organisation
 Use a hierarchy such as `/srv/student-data/<cohort>/<register-number>/{home,assignments,projects}`. Use stable register-number identifiers rather than user-selected names for directory identity; retain descriptive file names with validation and versioning. Store owner/group/mode, ACLs, timestamps, size, checksum and retention metadata. Set each home directory to owner-only (0700); shared course directories can be group-readable; project directories use a dedicated group or ACL. Create a shared project directory once and grant named group access rather than duplicating copies. Apply quotas, snapshots, off-host backups, audit logging and restore tests. Use ext4/XFS with indexed directories and journaling for general server storage.
 
+Proposed directory tree:
+```text
+/srv/student-data/
+  2026/
+    192565001/{home,assignments,projects}
+    192565013/{home,assignments,projects}
+  shared-projects/
+    project-A/  (group/ACL access for approved members)
+  staff/
+```
+
 ### 1.3 Defence (under 100 words)
 Each student receives a private directory owned by their account, with restrictive default permissions and quotas. Course staff receive explicitly granted read access where required. Group projects use a separate directory with a dedicated group or ACL, so only approved members can collaborate. Stable register-number paths prevent collisions, while audit logs and backups support accountability and recovery.
 
@@ -124,6 +135,17 @@ Store durable originals in cloud object storage or a replicated on-prem object s
 
 ### Stage 3 – Decisions
 Use 4 KiB filesystem blocks for general metadata and storage; object/chunk size e.g. 8–16 MiB as a tunable streaming segment, not as an OS block size. Use `none`/appropriate NVMe scheduler after measurement. Cache hot first-week videos using LFU/LRU hybrid with TTL and pre-warming. Replicate metadata and maintain at least two independent copies of origin data; object-store durability/replication settings must be verified against provider contract.
+
+Architecture sketch:
+```mermaid
+flowchart LR
+  U[Students] --> CDN[CDN edge cache]
+  CDN --> LB[Origin load balancer]
+  LB --> C[Hot SSD cache]
+  C --> O[Object storage / HDD origin]
+  LB --> M[Video metadata and time index]
+  O --> B[Backup / replica]
+```
 
 ### Stage 4 – Capacity and throughput calculations
 Let total stored logical video bytes be (V=sum_i size_i). For (N) concurrent viewers at bitrate (b), required delivery throughput is (N×b). Example planning scenario: 10,000 concurrent streams × 5 Mbit/s = 50 Gbit/s aggregate delivery; CDN edge capacity should absorb most of this, with origin shield sized for cache misses. At 200,000 students, if each video is 1 GB and there are 500 videos, raw content is 500 GB; two copies require about 1 TB before metadata/versioning. For arbitrary seek, a range request can retrieve the chunk containing the timestamp; with 8 MiB segments, maximum waste before requested point is less than one segment, and the index maps timestamp to segment/byte offset. A contiguous local file needs a direct offset calculation; linked allocation may require traversing many pointers, while indexed/extents need only a small index lookup.
