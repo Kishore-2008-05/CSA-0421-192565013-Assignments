@@ -50,5 +50,6 @@ jobs:
           /tmp/inode_capacity
           /tmp/disk_scheduling
           /tmp/disk_scheduling_all
+          /tmp/disk_queue_simulation
           /tmp/storage_workload
           bash "CSA 04 -- Assignment 5/TaskB1/log_summary.sh"
