@@ -16,4 +16,4 @@ ldd ./link_dynamic_demo
 stat -c '%n %s bytes' link_static_demo link_dynamic_demo
 ```
 
-The dlopen program prints matching entries from `/proc/self/maps`. To test a missing library, temporarily rename `libcrypto_plugin.so` and run `./link_demo`; restore it immediately afterward. Measure elapsed time/RSS with `/usr/bin/time -v` and record multiple trials. These are sample functions, not production cryptography.
+The dlopen program prints matching entries from `/proc/self/maps`. To test a library update without relinking the application, change the returned version string in `crypto_plugin.c` to `crypto-plugin-v2`, rebuild only `libcrypto_plugin.so` with the shared-library command above, then rerun `./link_dynamic_demo` and `./link_demo`. To test a missing library, temporarily rename `libcrypto_plugin.so` and run `./link_demo`; restore it immediately afterward. Measure elapsed time/RSS with `/usr/bin/time -v` and record multiple trials. These are sample functions, not production cryptography.
