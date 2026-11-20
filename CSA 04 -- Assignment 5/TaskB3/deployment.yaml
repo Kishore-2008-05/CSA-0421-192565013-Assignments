@@ -15,6 +15,7 @@ spec:
       containers:
         - name: portal
           image: simats/result-portal:1.0
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
           resources:
@@ -36,9 +37,47 @@ kind: Service
 metadata:
   name: result-portal
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: result-portal
   ports:
     - port: 80
       targetPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lms-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lms-demo
+  template:
+    metadata:
+      labels:
+        app: lms-demo
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "250m"
+              memory: "128Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lms-demo
+spec:
+  selector:
+    app: lms-demo
+  ports:
+    - port: 80
+      targetPort: 80
