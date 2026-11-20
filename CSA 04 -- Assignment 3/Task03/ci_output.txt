@@ -1,0 +1,8 @@
+(0,0): physical address 1000 (code)
+(0,399): physical address 1399 (code)
+(0,400): protection fault (limit=400)
+(1,120): physical address 5120 (data)
+(1,799): physical address 5799 (data)
+(2,499): physical address 9499 (stack)
+(2,500): protection fault (limit=500)
+(3,0): invalid segment
