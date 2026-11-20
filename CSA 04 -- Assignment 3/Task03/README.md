@@ -1,4 +1,7 @@
 # Q3 – Segmentation
-Compile: `gcc -std=c11 -Wall -Wextra segmentation.c -o segmentation`
-Run: `./segmentation`
-The program checks (segment, offset) pairs against each segment's base and limit and prints physical addresses or a protection fault. Compare eight test cases by hand. For a real process map, run `cat /proc/<pid>/maps` while a long-running process is alive. For a controlled SIGSEGV demonstration, use a child process and inspect its exit status; do not crash the shell.
+Compile:
+```bash
+gcc -std=c11 -Wall -Wextra segmentation.c -o segmentation
+gcc -std=c11 -Wall -Wextra segmentation_fragmentation.c -o segmentation_fragmentation
+```
+Run both. The first validates segment/offset pairs using base and limit. The second first-fit simulation loads 20 seeded random segments into a 10,000-unit region, removes every third segment and calculates free space, largest hole and an external-fragmentation indicator. Output is in `ci_fragmentation_output.txt`. This is a simulation, not the Linux kernel's physical memory allocator.
