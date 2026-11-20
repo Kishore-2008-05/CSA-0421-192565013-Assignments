@@ -18,12 +18,16 @@ jobs:
         run: |
           cd "CSA 04 -- Assignment 3"
           gcc -std=c11 -Wall -Wextra Task01/crypto_plugin.c -fPIC -shared -o /tmp/libcrypto_plugin.so
-          gcc -std=c11 -Wall -Wextra Task01/link_demo.c -o /tmp/link_demo -ldl\n          gcc -std=c11 -Wall -Wextra -c Task01/crypto_plugin.c -o /tmp/crypto_plugin.o\n          gcc -std=c11 -Wall -Wextra Task01/link_static_demo.c /tmp/crypto_plugin.o -o /tmp/link_static_demo\n          gcc -std=c11 -Wall -Wextra Task01/link_dynamic_demo.c -L/tmp -lcrypto_plugin -Wl,-rpath,/tmp -o /tmp/link_dynamic_demo
+          gcc -std=c11 -Wall -Wextra Task01/link_demo.c -o /tmp/link_demo -ldl
+          gcc -std=c11 -Wall -Wextra -c Task01/crypto_plugin.c -o /tmp/crypto_plugin.o
+          gcc -std=c11 -Wall -Wextra Task01/link_static_demo.c /tmp/crypto_plugin.o -o /tmp/link_static_demo
+          gcc -std=c11 -Wall -Wextra Task01/link_dynamic_demo.c -L/tmp -lcrypto_plugin -Wl,-rpath,/tmp -o /tmp/link_dynamic_demo
           for f in Task03/segmentation.c Task04/demand_paging.c Task06/raid_capacity.c Task07/mlock_latency.c; do
             gcc -std=c11 -Wall -Wextra "$f" -o "/tmp/$(basename "$f" .c)"
           done
           gcc -std=c11 -Wall -Wextra Task02/paging_translation.c -o /tmp/paging_translation
-          gcc -std=c11 -Wall -Wextra Task05/page_replacement.c -o /tmp/page_replacement\n          gcc -std=c11 -Wall -Wextra Task05/page_replacement_experiment.c -o /tmp/page_replacement_experiment
+          gcc -std=c11 -Wall -Wextra Task05/page_replacement.c -o /tmp/page_replacement
+          gcc -std=c11 -Wall -Wextra Task05/page_replacement_experiment.c -o /tmp/page_replacement_experiment
       - name: Compile CO4
         run: |
           cd "CSA 04 --Assignment 4"
@@ -32,7 +36,13 @@ jobs:
           done
       - name: Run portable simulations
         run: |
-          /tmp/link_static_demo\n          /tmp/link_dynamic_demo\n          cp /tmp/libcrypto_plugin.so "CSA 04 -- Assignment 3/Task01/libcrypto_plugin.so"\n          (cd "CSA 04 -- Assignment 3/Task01" && /tmp/link_demo)\n          /tmp/demand_paging 8\n          /tmp/page_replacement_experiment > /tmp/page-replacement.csv\n          /tmp/paging_translation
+          /tmp/link_static_demo
+          /tmp/link_dynamic_demo
+          cp /tmp/libcrypto_plugin.so "CSA 04 -- Assignment 3/Task01/libcrypto_plugin.so"
+          (cd "CSA 04 -- Assignment 3/Task01" && /tmp/link_demo)
+          /tmp/demand_paging 8
+          /tmp/page_replacement_experiment > /tmp/page-replacement.csv
+          /tmp/paging_translation
           /tmp/page_replacement
           /tmp/segmentation
           /tmp/raid_capacity
