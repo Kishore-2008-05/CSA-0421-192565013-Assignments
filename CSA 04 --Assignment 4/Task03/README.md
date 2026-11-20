@@ -1,0 +1,2 @@
+# Task 3 – Modern file systems
+See `../COMPLETE_WRITTEN_REPORT.md`, Task 3 for the comparison of FAT32, NTFS, ext4, XFS, Btrfs, ZFS and APFS, journaling modes and device recommendations. Capture local evidence using `stat`, `df -i`, `ls -i`, `findmnt -T .`; use `tune2fs -l` only on a confirmed ext filesystem.
