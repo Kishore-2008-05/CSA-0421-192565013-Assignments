@@ -1,0 +1,10 @@
+light load: 10000 requests, mean inter-arrival 20.0 ms
+FCFS  avg_wait=0.000 ms max_wait=0.000 ms avg_seek=66.311 cylinders/request finish=199984.1 ms
+SSTF  avg_wait=0.000 ms max_wait=0.000 ms avg_seek=66.311 cylinders/request finish=199984.1 ms
+medium load: 10000 requests, mean inter-arrival 2.0 ms
+FCFS  avg_wait=2.923 ms max_wait=24.680 ms avg_seek=66.311 cylinders/request finish=20002.1 ms
+SSTF  avg_wait=0.882 ms max_wait=9.500 ms avg_seek=62.443 cylinders/request finish=20002.1 ms
+heavy load: 10000 requests, mean inter-arrival 0.2 ms
+FCFS  avg_wait=8119.780 ms max_wait=16258.200 ms avg_seek=66.311 cylinders/request finish=18262.1 ms
+SSTF  avg_wait=1513.895 ms max_wait=4581.880 ms avg_seek=0.088 cylinders/request finish=5017.7 ms
+Model assumptions: seek service=0.02 ms/cylinder plus 0.5 ms transfer; seeded synthetic arrivals, not physical-disk measurements.
