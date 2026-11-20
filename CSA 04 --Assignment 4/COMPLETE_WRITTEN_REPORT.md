@@ -60,15 +60,15 @@ Task02 implements first-fit contiguous allocation and indexed allocation. The ex
 ### 3.1 Comparison
 | File system | Platforms | Journaling/consistency | Snapshots | Checksums / CoW | Typical role |
 |---|---|---|---|---|---|
-| FAT32 | Broad compatibility | No metadata journal | No native | No | Removable media; 4 GiB max file |
-| NTFS | Windows; Linux support | Metadata journaling | VSS via Windows stack | Not general end-to-end data checksums; not CoW | Windows system/data volumes |
-| ext4 | Linux | Journal; ordered default | No native general snapshots (use LVM) | No general data checksums; not CoW | General Linux server |
-| XFS | Linux | Metadata journal | Reflink/CoW support; snapshots via LVM | Metadata checksums; CoW reflink | Large files and high-throughput Linux |
-| Btrfs | Linux | CoW transaction model | Native subvolume snapshots | Checksums; CoW | Linux systems needing snapshots |
-| ZFS | Cross-platform implementations | Copy-on-write transactional | Native snapshots/clones | End-to-end checksums; CoW | Storage/backup server |
-| APFS | Apple platforms | CoW metadata | Native snapshots | Checksums for metadata; CoW | macOS/iOS storage |
+| FAT32 | Broad compatibility | No metadata journal | No native | No | Max file 4 GiB−1 byte; common Windows volume limit 2 TiB |
+| NTFS | Windows; Linux support | Metadata journaling | VSS via Windows stack | Not general end-to-end data checksums; not CoW | 16 TB file/volume at 4 KiB clusters; up to 8 PB with supported larger clusters/Windows Server versions |
+| ext4 | Linux | Journal; ordered default | No native general snapshots (use LVM) | No general data checksums; not CoW | Typical maximum file 16 TiB; filesystem up to 1 EiB (kernel/configuration dependent) |
+| XFS | Linux | Metadata journal | Reflink/CoW support; snapshots via LVM | Metadata checksums; CoW reflink | Representative maximum file and filesystem size 8 EiB |
+| Btrfs | Linux | CoW transaction model | Native subvolume snapshots | Checksums; CoW | Practical Linux VFS maximum file length 8 EiB; filesystem limit depends on implementation/device layout |
+| ZFS | Cross-platform implementations | Copy-on-write transactional | Native snapshots/clones | End-to-end checksums; CoW | Maximum file 16 EiB; theoretical pool size 256 ZiB |
+| APFS | Apple platforms | CoW metadata | Native snapshots | Checksums for metadata; CoW | Maximum file size 8 EiB; actual volume capacity is bounded by device and OS implementation |
 
-Maximum file/volume sizes depend on implementation, block/cluster size and OS version; do not treat one universal limit as valid across all configurations. FAT32's 4 GiB minus one byte file-size limit is the notable interoperability constraint.
+These are representative published limits, not promises that a given device can be formatted to that size. Cluster/block size, kernel/OS release, architecture and implementation change practical limits. Sources: [Microsoft file-system limits](https://learn.microsoft.com/en-us/windows/win32/fileio/filesystem-functionality-comparison), [Microsoft NTFS volume limits](https://learn.microsoft.com/en-gb/windows-server/storage/file-server/ntfs-overview), [Oracle Linux ext4/XFS/Btrfs limits](https://docs.oracle.com/cd/F61088_01/fsadmin/OL9-FSADMIN.pdf), [Btrfs filesystem limits](https://btrfs.readthedocs.io/en/stable/Administration.html), [Apple APFS comparison](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/APFS_Guide/VolumeFormatComparison/VolumeFormatComparison.html), [OpenZFS limits overview](https://www.truenas.com/wp-content/uploads/2023/05/How_TrueNAS_Leverages_OpenZFS_White_Paper_May_2023.pdf). FAT32's 4 GiB minus one byte file-size limit is the notable interoperability constraint.
 
 ### 3.2 Crash consistency
 A power failure during a write can leave metadata inconsistent (for example, an allocated block without a directory entry). Journaling records intended metadata updates so recovery can replay or roll back transactions. ext4 modes:
