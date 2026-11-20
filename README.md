@@ -8,7 +8,7 @@
 - [CO5 – Linux, Containers and Virtualisation](./CSA%2004%20--%20Assignment%205/README.md) · [Complete written report](./CSA%2004%20--%20Assignment%205/COMPLETE_WRITTEN_REPORT.md)
 
 ## Validation
-GitHub Actions workflow `.github/workflows/assignment-checks.yml` compiles the C programs and runs portable demonstrations on each push. Check the Actions tab for the latest result.
+See [VALIDATION.md](./VALIDATION.md) for the latest recorded successful compile/run check. GitHub Actions workflow `.github/workflows/assignment-checks.yml` compiles the C programs and runs portable demonstrations on each push. Check the Actions tab for the latest result.
 
 ## Important submission note
 Written solutions, source code, configuration and repeatable commands are committed. Hardware- and environment-specific evidence (local WSL screenshots, real disk/filesystem inspection, VM measurements, Docker build/run, Kubernetes pod recovery and load testing) must be executed on the student's own machine/cluster and added to the matching task folders. Do not represent estimates or sample values as measured results.
