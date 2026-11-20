@@ -1,0 +1,5 @@
+Queries: 100000; blocks/file: 256
+Indexed/extent data-block reads: 100000
+Linked allocation data-block reads: 12849648
+Average linked reads/query: 128.50
+Interpretation: direct index lookup has constant block-index depth; linked traversal grows with k.
