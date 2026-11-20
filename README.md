@@ -7,6 +7,9 @@
 - [CO4 – File Storage and Disk Access](./CSA%2004%20--Assignment%204/README.md) · [Complete written report](./CSA%2004%20--Assignment%204/COMPLETE_WRITTEN_REPORT.md)
 - [CO5 – Linux, Containers and Virtualisation](./CSA%2004%20--%20Assignment%205/README.md) · [Complete written report](./CSA%2004%20--%20Assignment%205/COMPLETE_WRITTEN_REPORT.md)
 
+## Run portable tests locally
+From Ubuntu WSL after cloning the repository, run `bash run_portable_tests.sh`. It compiles and runs the portable C/Bash examples and saves outputs under `local-evidence/<timestamp>/`. Docker, VM and Kubernetes experiments are separate and require those tools.
+
 ## Validation
 See [VALIDATION.md](./VALIDATION.md) for the latest recorded successful compile/run check. GitHub Actions workflow `.github/workflows/assignment-checks.yml` compiles the C programs and runs portable demonstrations on each push. Check the Actions tab for the latest result.
 
