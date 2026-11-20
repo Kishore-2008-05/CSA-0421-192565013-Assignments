@@ -44,7 +44,7 @@ For a 48-bit address and 4 KiB pages: (2^{48-12}=2^{36}) entries. At 8 bytes/PTE
 Let memory access time be (m), TLB lookup time (t), hit ratio (h). On a hit, time is (t+m); on a miss with a one-level page table, (t+2m). Thus (EAT=h(t+m)+(1-h)(t+2m)). State assumptions when using a different number of page-table levels. With (t=10ns,m=100ns), EAT is 130ns at 80%, 115ns at 95%, and 111ns at 99%.
 
 ### 4. Page sizes and internal fragmentation
-For 100 processes with independently random final-page occupancy, expected waste is approximately half a page per process:
+For 100 processes with independently random final-page occupancy, expected waste is approximately half a page per process. A fixed-seed sample of 100 sizes from 1 byte to 50 MiB is also implemented in Task02/paging_fragmentation.c; its committed CSV result is:
 - 1 KiB pages: about 0.5 KiB × 100 = **50 KiB**.
 - 4 KiB pages: about 2 KiB × 100 = **200 KiB**.
 - 2 MiB pages: about 1 MiB × 100 = **100 MiB**.
@@ -62,7 +62,7 @@ Run `getconf PAGESIZE`; run a test program using `/usr/bin/time -v ./program` an
 
 ## Q3 – Segmentation (6 marks)
 
-A segment is a logical region such as code, data or stack. A segment-table entry contains base and limit. For segment (s) and offset (d), first verify (0\le d<limit[s]); if valid, physical address is (base[s]+d), otherwise raise a protection fault. Task03 implements three segments and tests valid, boundary and invalid accesses.
+A segment is a logical region such as code, data or stack. A segment-table entry contains base and limit. For segment (s) and offset (d), first verify (0\le d<limit[s]); if valid, physical address is (base[s]+d), otherwise raise a protection fault. Task03 implements three segments and tests valid, boundary and invalid accesses. Task03/segmentation_fragmentation.c also simulates loading 20 random segments into 10,000 units and removing every third segment; its sample run leaves 5,534 free units with a largest hole of 3,323 and an external-fragmentation indicator of 0.3995.
 
 Code can be read-only and shared; data is writable; stack can have a different growth policy. Segmentation matches the programmer's logical view and supports per-segment protection/sharing, but variable-sized allocation causes external fragmentation and may require compaction. Pure paging has fixed-size frames and no external fragmentation but has internal waste and page-table overhead. Segmented paging combines logical segments with page tables within each segment, reducing external fragmentation while preserving logical protection, at the cost of more translation structures.
 
@@ -114,7 +114,7 @@ For six nominal 4 TB disks:
 - RAID5: 20 TB; survives one disk failure.
 - RAID6: 16 TB; survives two disk failures.
 - RAID10: 12 TB; survives at least one disk failure, depending on mirror placement.
-RAID5/6 capacity assumes equal-size disks and decimal TB. RAID is not a backup. Use `lsblk -f`, `swapon --show`, `sudo fdisk -l`. Measure disk speed only on disks you own and avoid destructive write benchmarks on production devices.
+RAID5/6 capacity assumes equal-size disks and decimal TB. RAID is not a backup. If each disk independently fails during the chosen period with probability p, a mirrored pair loses data with probability p²; for three independent mirrored pairs, probability of any pair loss is (1-(1-p²)^3). For six-disk RAID5, assuming any two failed disks cause array loss, probability is (1-(1-p)^6-6p(1-p)^5). These formulas require an explicitly stated time period and independent equal failure probabilities. Use `lsblk -f`, `swapon --show`, `sudo fdisk -l`. Measure disk speed only on disks you own and avoid destructive write benchmarks on production devices.
 
 **Decision:** for hospital records, choose RAID10 for write performance and fast rebuilds if budget/capacity permit, or RAID6 where capacity and two-disk fault tolerance dominate. Keep off-host, immutable backups and test restores. RAID6 over RAID5 adds one parity disk and can survive two failures, with extra parity calculation/write penalty.
 
