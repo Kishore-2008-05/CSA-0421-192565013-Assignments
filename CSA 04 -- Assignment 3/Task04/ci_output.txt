@@ -1,0 +1,4 @@
+Requested memory: 8 MiB; page size: 4096 bytes; pages touched: 2048
+Minor faults delta: 2047; major faults delta: 0
+
+This sample was run on the GitHub Actions Ubuntu runner. Fault counts vary by kernel and process state. The child process writes a page after fork to trigger copy-on-write; child-specific counters are not separately printed.
