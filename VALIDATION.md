@@ -1,8 +1,8 @@
 # Automated validation record
 
 **Workflow:** Compile assignment programs  
-**Latest fully passing run:** [44757260147 – successful](https://github.com/Kishore-2008-05/CSA-0421-192565013-Assignments/actions/runs/44757138964)  
-**Commit tested:** `dac46ccd51d01ed395ff90d2007b50ee6d47185c`
+**Latest fully passing run:** [44757600619 – successful](https://github.com/Kishore-2008-05/CSA-0421-192565013-Assignments/actions/runs/44757138964)  
+**Commit tested:** `ddca50f1f209b9d03a05ec18445f629d937c7031`
 
 ## Checks that passed
 - GCC compilation of CO3 C programs, including static/object linking, shared-library linking, `dlopen/dlsym`, paging, segmentation, demand paging, page replacement and RAID capacity.
@@ -11,6 +11,8 @@
 - The runtime-linking demo printed the executable and shared-library regions from `/proc/self/maps`.
 - The demand-paging demo touched 8 MiB and reported 2,047 minor faults and 0 major faults on that runner. The 100,000-reference three-policy page-replacement experiment took 12.111 ms on this runner (hardware dependent).
 - The CO5 sample log summary matched the expected status counts, busiest client and total bytes.
+- The paging-fragmentation experiment reported 53,150 B, 212,894 B and 107,413,406 B total internal waste for 1 KiB, 4 KiB and 2 MiB pages (fixed-seed 100-process sample).
+- The segmentation simulation loaded 20 random segments, then reported 5,534 free units, a largest hole of 3,323 units and fragmentation indicator 0.3995.
 
 ## Selected verified outputs
 ```text
