@@ -1,0 +1,2 @@
+# Task 5 – Distributed and cloud storage
+See `../COMPLETE_WRITTEN_REPORT.md`, Task 5 for NFS, HDFS/Ceph and cloud object storage comparison, replication/consistency and OS device management. Add provider pricing only after selecting a region and recording storage, transfer and request assumptions.
