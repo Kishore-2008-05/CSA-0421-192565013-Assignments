@@ -11,7 +11,7 @@ int main(void){
  int done[N]={0},p=53;for(int k=0;k<N;k++){int best=-1,dist=MAXC+1;for(int i=0;i<N;i++)if(!done[i]&&abs(req[i]-p)<dist){best=i;dist=abs(req[i]-p);}done[best]=1;a[k]=req[best];p=req[best];}total("SSTF",a,N,53);
  int n=0;for(int i=N-1;i>=0;i--)if(s[i]<53)a[n++]=s[i];a[n++]=0;for(int i=0;i<N;i++)if(s[i]>53)a[n++]=s[i];total("SCAN",a,n,53);
  n=0;for(int i=N-1;i>=0;i--)if(s[i]<53)a[n++]=s[i];for(int i=0;i<N;i++)if(s[i]>53)a[n++]=s[i];total("LOOK",a,n,53);
- n=0;for(int i=0;i<N;i++)if(s[i]>53)a[n++]=s[i];a[n++]=MAXC;for(int i=0;i<N;i++)if(s[i]<53)a[n++]=s[i];int cs=total("C-SCAN",a,n,53)+14;printf("C-SCAN circular wrap correction (+14) => %d\n",cs);
+ n=0;for(int i=0;i<N;i++)if(s[i]>53)a[n++]=s[i];a[n++]=MAXC;for(int i=0;i<N;i++)if(s[i]<53)a[n++]=s[i];int cs=total("C-SCAN",a,n,53)+28;printf("C-SCAN circular wrap correction (+28) => %d\n",cs);
  n=0;for(int i=0;i<N;i++)if(s[i]>53)a[n++]=s[i];for(int i=0;i<N;i++)if(s[i]<53)a[n++]=s[i];total("C-LOOK",a,n,53);
  return 0;
 }
