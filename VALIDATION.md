@@ -1,16 +1,18 @@
 # Automated validation record
 
 **Workflow:** Compile assignment programs  
-**Commit tested:** `dc21bef984246fbe9e6b2abfeec3e3697f30c9a5`  
-**GitHub Actions run:** [44756513010 – successful](https://github.com/Kishore-2008-05/CSA-0421-192565013-Assignments/actions/runs/44756513010)
+**Latest fully passing run:** [44757138964 – successful](https://github.com/Kishore-2008-05/CSA-0421-192565013-Assignments/actions/runs/44757138964)  
+**Commit tested:** `2e79d0980e31428338be0bfd7e930b509ad60687`
 
 ## Checks that passed
-- GCC compilation of CO3 C programs: success.
-- GCC compilation of CO4 C programs: success.
-- Execution of paging translation, page replacement, segmentation, RAID capacity, file allocation, inode capacity, disk scheduling, storage workload and CO5 log summary: success.
-- CO5 sample log summary matched expected status counts, busiest client and total bytes.
+- GCC compilation of CO3 C programs, including static/object linking, shared-library linking, `dlopen/dlsym`, paging, segmentation, demand paging, page replacement and RAID capacity.
+- GCC compilation of CO4 C programs, including allocation, inode/bitmap calculation, all six disk scheduling algorithms, 10,000-request queue simulation and storage workload simulation.
+- Execution of the portable C programs and CO5 Bash log-analysis script.
+- The runtime-linking demo printed the executable and shared-library regions from `/proc/self/maps`.
+- The demand-paging demo touched 8 MiB and reported 2,047 minor faults and 0 major faults on that runner.
+- The CO5 sample log summary matched the expected status counts, busiest client and total bytes.
 
-## Selected verified outputs from the runner
+## Selected verified outputs
 ```text
 3 frames: FIFO 15, LRU 12, Optimal 9
 4 frames: FIFO 10, LRU 8, Optimal 8
@@ -25,6 +27,11 @@ C-SCAN: 382 cylinders including circular wrap
 C-LOOK: 322 cylinders including circular jump
 ```
 ```text
+medium load: FCFS average wait 2.923 ms; SSTF 0.882 ms
+heavy load: FCFS average wait 8119.780 ms; SSTF 1513.895 ms
+```
+These waiting times use the synthetic model stated in `CSA 04 --Assignment 4/Task04/README.md`; they are not physical-disk measurements.
+```text
 Requests per status code:
 200 4
 302 1
@@ -35,4 +42,4 @@ Busiest client:
 Total bytes sent: 43200
 ```
 
-These are automated Ubuntu runner results, not screenshots or measurements from the student's WSL laptop. Docker/VM/Kubernetes deployment and hardware-specific timing/throughput experiments remain to be executed locally.
+These are automated Ubuntu runner results, not screenshots or measurements from the student's WSL laptop. Docker/VM/Kubernetes deployment, real disk/filesystem inspection and hardware-specific timing/throughput experiments still need local execution.
