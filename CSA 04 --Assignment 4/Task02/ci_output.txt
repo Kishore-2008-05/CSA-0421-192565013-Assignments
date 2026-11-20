@@ -1,0 +1,8 @@
+AAAAAA........CCCCC.............
+E (10 blocks) contiguous: start 19
+E (10 blocks) indexed: index block 6, data blocks 7 8 9 10 11 12 13 29 30 31
+AAAAAAeEEEEEEECCCCCEEEEEEEEEEEEE
+4 GiB file blocks: 1048576
+Pointers per indirect block: 1024
+Maximum inode-addressable bytes: 4402345721856
+4 TB decimal bitmap: 122070313 bytes (116.42 MiB)
