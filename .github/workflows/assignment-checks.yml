@@ -23,7 +23,7 @@ jobs:
             gcc -std=c11 -Wall -Wextra "$f" -o "/tmp/$(basename "$f" .c)"
           done
           gcc -std=c11 -Wall -Wextra Task02/paging_translation.c -o /tmp/paging_translation
-          gcc -std=c11 -Wall -Wextra Task05/page_replacement.c -o /tmp/page_replacement
+          gcc -std=c11 -Wall -Wextra Task05/page_replacement.c -o /tmp/page_replacement\n          gcc -std=c11 -Wall -Wextra Task05/page_replacement_experiment.c -o /tmp/page_replacement_experiment
       - name: Compile CO4
         run: |
           cd "CSA 04 --Assignment 4"
