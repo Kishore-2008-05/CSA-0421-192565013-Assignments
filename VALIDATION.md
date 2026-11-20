@@ -2,7 +2,7 @@
 
 **Workflow:** Compile assignment programs  
 **Latest fully passing run:** [44757260147 – successful](https://github.com/Kishore-2008-05/CSA-0421-192565013-Assignments/actions/runs/44757138964)  
-**Commit tested:** `d528166413325c1c28796b2d24b6804358075066`
+**Commit tested:** `dac46ccd51d01ed395ff90d2007b50ee6d47185c`
 
 ## Checks that passed
 - GCC compilation of CO3 C programs, including static/object linking, shared-library linking, `dlopen/dlsym`, paging, segmentation, demand paging, page replacement and RAID capacity.
