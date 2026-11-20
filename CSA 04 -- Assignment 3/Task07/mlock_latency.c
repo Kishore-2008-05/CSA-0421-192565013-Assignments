@@ -14,7 +14,7 @@ int main(int argc,char **argv){
     getrusage(RUSAGE_SELF,&r0); clock_gettime(CLOCK_MONOTONIC,&a);
     for(size_t i=0;i<n;i+=4096)p[i]=1;
     clock_gettime(CLOCK_MONOTONIC,&b); getrusage(RUSAGE_SELF,&r1);
-    printf("Without mlock: touch %.1f MiB in %.3f ms; minor faults=%ld\n",mb,ms(a,b),r1.ru_minflt-r0.ru_minflt);
+    printf("Without mlock: touch %.1f MiB in %.3f ms; minor faults=%ld\n",(double)mb,ms(a,b),r1.ru_minflt-r0.ru_minflt);
     if(mlock(p,n)!=0){perror("mlock (may require a higher RLIMIT_MEMLOCK)");free(p);return 2;}
     getrusage(RUSAGE_SELF,&r0); clock_gettime(CLOCK_MONOTONIC,&a);
     for(size_t i=0;i<n;i+=4096)p[i]++;
