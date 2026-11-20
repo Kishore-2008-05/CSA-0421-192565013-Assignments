@@ -1,21 +1,7 @@
-# CO3 Q2 – Paging address translation
-
-Compile and run:
-
+# Q2 – Paging
+Compile:
 ```bash
 gcc -std=c11 -Wall -Wextra paging_translation.c -o paging_translation
-./paging_translation
+gcc -std=c11 -Wall -Wextra paging_fragmentation.c -o paging_fragmentation
 ```
-
-Expected output with PAGE_SIZE=1024:
-
-```text
-0 -> page 0 offset 0 : physical 5120
-1500 -> page 1 offset 476 : physical 2524
-3100 -> page 3 offset 28 : physical 7196
-6200 -> page 6 offset 56 : physical 3128
-9000 -> page 8 offset 808 : invalid address
-2049 -> page 2 offset 1 : page fault
-```
-
-For the requested 2048-byte experiment, change PAGE_SIZE to 2048 and rerun. Note that the given page table still has eight entries; addresses whose page number is 8 or more are outside this sample table.
+Run both. The first translates logical addresses using the sample page table, including an invalid address and a page fault. The second uses fixed seed 192565013 to calculate internal fragmentation for 100 random process sizes with 1 KiB, 4 KiB and 2 MiB pages. Results are in `ci_fragmentation_output.csv`. Change PAGE_SIZE to 2048 in the translation example for the required second run. Collect `getconf PAGESIZE` and `/usr/bin/time -v` from your own Linux machine.
