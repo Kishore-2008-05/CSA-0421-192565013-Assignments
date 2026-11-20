@@ -27,7 +27,7 @@ jobs:
       - name: Compile CO4
         run: |
           cd "CSA 04 --Assignment 4"
-          for f in Task02/file_allocation.c Task02/inode_capacity.c Task04/disk_scheduling.c Task04/disk_scheduling_all.c Task06/storage_workload.c; do
+          for f in Task02/file_allocation.c Task02/inode_capacity.c Task04/disk_scheduling.c Task04/disk_scheduling_all.c Task04/disk_queue_simulation.c Task06/storage_workload.c; do
             gcc -std=c11 -Wall -Wextra "$f" -o "/tmp/$(basename "$f" .c)"
           done
       - name: Run portable simulations
