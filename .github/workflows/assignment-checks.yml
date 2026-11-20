@@ -26,6 +26,8 @@ jobs:
             gcc -std=c11 -Wall -Wextra "$f" -o "/tmp/$(basename "$f" .c)"
           done
           gcc -std=c11 -Wall -Wextra Task02/paging_translation.c -o /tmp/paging_translation
+          gcc -std=c11 -Wall -Wextra Task02/paging_fragmentation.c -o /tmp/paging_fragmentation
+          gcc -std=c11 -Wall -Wextra Task03/segmentation_fragmentation.c -o /tmp/segmentation_fragmentation
           gcc -std=c11 -Wall -Wextra Task05/page_replacement.c -o /tmp/page_replacement
           gcc -std=c11 -Wall -Wextra Task05/page_replacement_experiment.c -o /tmp/page_replacement_experiment
       - name: Compile CO4
@@ -42,6 +44,8 @@ jobs:
           (cd "CSA 04 -- Assignment 3/Task01" && /tmp/link_demo)
           /tmp/demand_paging 8
           /tmp/page_replacement_experiment > /tmp/page-replacement.csv
+          /tmp/paging_fragmentation
+          /tmp/segmentation_fragmentation
           /tmp/paging_translation
           /tmp/page_replacement
           /tmp/segmentation
