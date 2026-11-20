@@ -1,0 +1,2 @@
+# Task 1 – File-system design review
+See `../COMPLETE_WRITTEN_REPORT.md`, Task 1. It evaluates the proposed flat directory, gives a private/group ACL hierarchy, and discusses cloud-drive trade-offs. Include your own directory tree/ACL diagram in the final report if requested by the instructor.
