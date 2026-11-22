@@ -1,0 +1,59 @@
+name: Compile assignment programs
+on:
+  push:
+    paths:
+      - "CSA 04 -- Assignment 3/**"
+      - "CSA 04 --Assignment 4/**"
+      - "CSA 04 -- Assignment 5/**"
+      - ".github/workflows/assignment-checks.yml"
+  workflow_dispatch:
+jobs:
+  c-programs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install GCC
+        run: sudo apt-get update && sudo apt-get install -y build-essential
+      - name: Compile CO3
+        run: |
+          cd "CSA 04 -- Assignment 3"
+          gcc -std=c11 -Wall -Wextra Task01/crypto_plugin.c -fPIC -shared -o /tmp/libcrypto_plugin.so
+          gcc -std=c11 -Wall -Wextra Task01/link_demo.c -o /tmp/link_demo -ldl
+          gcc -std=c11 -Wall -Wextra -c Task01/crypto_plugin.c -o /tmp/crypto_plugin.o
+          gcc -std=c11 -Wall -Wextra Task01/link_static_demo.c /tmp/crypto_plugin.o -o /tmp/link_static_demo
+          gcc -std=c11 -Wall -Wextra Task01/link_dynamic_demo.c -L/tmp -lcrypto_plugin -Wl,-rpath,/tmp -o /tmp/link_dynamic_demo
+          for f in Task03/segmentation.c Task04/demand_paging.c Task06/raid_capacity.c Task07/mlock_latency.c; do
+            gcc -std=c11 -Wall -Wextra "$f" -o "/tmp/$(basename "$f" .c)"
+          done
+          gcc -std=c11 -Wall -Wextra Task02/paging_translation.c -o /tmp/paging_translation
+          gcc -std=c11 -Wall -Wextra Task02/paging_fragmentation.c -o /tmp/paging_fragmentation
+          gcc -std=c11 -Wall -Wextra Task03/segmentation_fragmentation.c -o /tmp/segmentation_fragmentation
+          gcc -std=c11 -Wall -Wextra Task05/page_replacement.c -o /tmp/page_replacement
+          gcc -std=c11 -Wall -Wextra Task05/page_replacement_experiment.c -o /tmp/page_replacement_experiment
+      - name: Compile CO4
+        run: |
+          cd "CSA 04 --Assignment 4"
+          for f in Task02/file_allocation.c Task02/inode_capacity.c Task04/disk_scheduling.c Task04/disk_scheduling_all.c Task04/disk_queue_simulation.c Task06/storage_workload.c; do
+            gcc -std=c11 -Wall -Wextra "$f" -o "/tmp/$(basename "$f" .c)"
+          done
+      - name: Run portable simulations
+        run: |
+          /tmp/link_static_demo
+          /tmp/link_dynamic_demo
+          cp /tmp/libcrypto_plugin.so "CSA 04 -- Assignment 3/Task01/libcrypto_plugin.so"
+          (cd "CSA 04 -- Assignment 3/Task01" && /tmp/link_demo)
+          /tmp/demand_paging 8
+          /tmp/page_replacement_experiment > /tmp/page-replacement.csv
+          /tmp/paging_fragmentation
+          /tmp/segmentation_fragmentation
+          /tmp/paging_translation
+          /tmp/page_replacement
+          /tmp/segmentation
+          /tmp/raid_capacity
+          /tmp/file_allocation
+          /tmp/inode_capacity
+          /tmp/disk_scheduling
+          /tmp/disk_scheduling_all
+          /tmp/disk_queue_simulation
+          /tmp/storage_workload
+          bash "CSA 04 -- Assignment 5/TaskB1/log_summary.sh"
