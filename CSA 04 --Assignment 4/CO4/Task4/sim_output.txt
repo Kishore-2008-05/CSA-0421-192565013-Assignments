@@ -1,0 +1,36 @@
+10,000 random requests, cylinders 0-199, seed 2024
+
+light (mean inter-arrival 200)
+alg         avg move     avg wait     max wait
+FCFS           66.66         93.5        657.4
+SSTF           64.73         86.3        366.0
+SCAN          112.35        183.4        553.4
+C-SCAN        142.68        289.1        776.0
+LOOK           64.82         86.7        366.0
+C-LOOK         66.06         91.1        484.1
+
+medium (50)
+alg         avg move     avg wait     max wait
+FCFS           66.66      90404.1     180332.4
+SSTF           43.70        132.2        792.2
+SCAN           47.37        192.5        516.5
+C-SCAN         48.08        266.8        783.0
+LOOK           43.69        133.7        392.3
+C-LOOK         45.12        172.5        569.0
+
+heavy (20)
+alg         avg move     avg wait     max wait
+FCFS           66.66     238750.4     478058.5
+SSTF           18.87        167.0       1113.0
+SCAN           18.89        176.6        478.6
+C-SCAN         18.90        235.8        692.4
+LOOK           18.87        155.3        416.0
+C-LOOK         18.89        205.8        590.3
+
+Starvation test: stream near cylinder 60 every 1 time unit
+  FCFS  : request at 183 served after 131 time units (0 other requests first)
+  SSTF  : request at 183 STARVED - still waiting after 100000 time units (99277 others served)
+  SCAN  : request at 183 served after 147 time units (16 other requests first)
+  C-SCAN: request at 183 served after 147 time units (16 other requests first)
+  LOOK  : request at 183 served after 147 time units (16 other requests first)
+  C-LOOK: request at 183 served after 147 time units (16 other requests first)

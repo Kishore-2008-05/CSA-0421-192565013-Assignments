@@ -1,0 +1,28 @@
+== df -T / ; df -i /
+Filesystem     Type 1K-blocks    Used Available Use% Mounted on
+/dev/vda       ext4 264212084 6852336  10468864  40% /
+Filesystem       Inodes  IUsed    IFree IUse% Mounted on
+/dev/vda       16777216 165056 16612160    1% /
+== stat /etc/hostname
+  File: /etc/hostname
+  Size: 3         	Blocks: 8          IO Block: 4096   regular file
+Device: 254,0	Inode: 162830      Links: 1
+Access: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2026-10-24 14:11:46.000000000 +0000
+Modify: 2026-11-22 01:57:29.063869338 +0000
+Change: 2026-11-22 01:57:29.063869338 +0000
+ Birth: 2026-11-17 21:01:58.000000000 +0000
+== ls -i /etc | head -5
+103034 ImageMagick-6
+103055 LatexMk
+103056 PackageKit
+ 45737 X11
+160290 adduser.conf
+== tune2fs -l /dev/vda
+tune2fs: Operation not permitted while trying to open /dev/vda
+Couldn't find valid filesystem superblock.
+tune2fs 1.47.0 (5-Feb-2023)
+== dumpe2fs -h /dev/vda
+dumpe2fs 1.47.0 (5-Feb-2023)
+dumpe2fs: Operation not permitted while trying to open /dev/vda
+Couldn't find valid filesystem superblock.

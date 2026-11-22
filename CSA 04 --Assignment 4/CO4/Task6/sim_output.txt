@@ -1,0 +1,7 @@
+Design A (HDD only, FCFS): avg service 37.44 ms -> 26.7 requests/s per HDD
+Design B (SSD cache 100 videos = 5% of library, batched C-SCAN HDD): hit ratio 50.8%, HDD avg 33.54 ms (29.8 req/s), overall avg 17.57 ms
+   peak 937 req/s: HDDs needed 16 (A needs 36); SSD load 476 req/s of ~476/s per NVMe
+Design B (SSD cache 200 videos = 10% of library, batched C-SCAN HDD): hit ratio 61.5%, HDD avg 33.54 ms (29.8 req/s), overall avg 14.20 ms
+   peak 937 req/s: HDDs needed 13 (A needs 36); SSD load 577 req/s of ~476/s per NVMe
+Design B (SSD cache 400 videos = 20% of library, batched C-SCAN HDD): hit ratio 72.5%, HDD avg 33.54 ms (29.8 req/s), overall avg 10.76 ms
+   peak 937 req/s: HDDs needed 9 (A needs 36); SSD load 679 req/s of ~476/s per NVMe

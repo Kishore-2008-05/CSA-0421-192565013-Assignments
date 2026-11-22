@@ -1,0 +1,14 @@
+== schedulers
+loop0: [none] mq-deadline kyber bfq  rotational=0
+loop1: [none] mq-deadline kyber bfq  rotational=0
+loop2: [none] mq-deadline kyber bfq  rotational=0
+loop3: [none] mq-deadline kyber bfq  rotational=0
+loop4: [none] mq-deadline kyber bfq  rotational=0
+loop5: [none] mq-deadline kyber bfq  rotational=0
+loop6: [none] mq-deadline kyber bfq  rotational=0
+loop7: [none] mq-deadline kyber bfq  rotational=0
+vda: none [mq-deadline] kyber bfq  rotational=1
+vdb: none [mq-deadline] kyber bfq  rotational=1
+vdc: none [mq-deadline] kyber bfq  rotational=1
+vdd: none [mq-deadline] kyber bfq  rotational=1
+zram0: cat: /sys/block/zram0/queue/scheduler: No such file or directory rotational=0

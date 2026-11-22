@@ -1,0 +1,6 @@
+Library 2000 GB; each student watches 4 h/month at 2 Mbps = 3.60 GB
+Monthly transfer = 720 TB
+Object storage @ $0.023/GB-month: $46/month (x3 if you keep 3 copies in other tiers: $138)
+CDN delivery @ $0.05/GB: $36,000/month  (assumed blended rate)
+Own servers: hardware + ISP bandwidth + staff NOT included; this is a cloud-only estimate.
+Own-server storage: 13 HDD x 4 TB + 2 NVMe 2 TB per replica set; x3 replicas = 3x the hardware

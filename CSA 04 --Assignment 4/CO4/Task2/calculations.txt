@@ -1,0 +1,10 @@
+4 GB file / 4 KB blocks = 1048576 blocks; last block index 1048575
+Disk reads to reach the LAST block:
+  contiguous: 1 (address = start + k)
+  linked: 1048576 (follow 1048575 pointers; each block read in turn)
+  FAT (table in memory): 1 data read ( 1048575 memory look-ups in the FAT)
+  indexed/inode: last block lies in single-indirect? direct=12, single= 1024 , double= 1048576
+   block 1048575 is in the double-indirect region -> 3 reads (2 index + 1 data)
+Inode max file size = 4402345721856 bytes = 4.0039 TiB
+4 TB bit vector = 128 MiB (1 bit per 4 KB block)
+4 TB FAT, 4 B/entry = 4 GiB
