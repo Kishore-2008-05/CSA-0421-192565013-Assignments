@@ -1,0 +1,8 @@
+55fba59e8000-55fba59ea000 r--p 00000000 fe:00 163154                     /usr/bin/sleep
+55fba59ea000-55fba59ee000 r-xp 00002000 fe:00 163154                     /usr/bin/sleep
+55fba59ee000-55fba59ef000 r--p 00006000 fe:00 163154                     /usr/bin/sleep
+55fba59ef000-55fba59f0000 r--p 00007000 fe:00 163154                     /usr/bin/sleep
+55fba59f0000-55fba59f1000 rw-p 00008000 fe:00 163154                     /usr/bin/sleep
+55fbd58af000-55fbd58d0000 rw-p 00000000 00:00 0                          [heap]
+7f68c9c00000-7f68c9c28000 r--p 00000000 fe:00 115719                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f68c9c28000-7f68c9db1000 r-xp 00028000 fe:00 115719                     /usr/lib/x86_64-linux-gnu/libc.so.6

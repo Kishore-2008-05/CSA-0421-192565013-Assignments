@@ -1,0 +1,5 @@
+RLIMIT_MEMLOCK soft=8388608 hard=8388608 bytes
+unlocked  avg 0.058 us, worst 26.4 us
+mlock(4 MB) took 80.3 us
+locked    avg 0.056 us, worst 26.2 us
+munlock took 72.6 us

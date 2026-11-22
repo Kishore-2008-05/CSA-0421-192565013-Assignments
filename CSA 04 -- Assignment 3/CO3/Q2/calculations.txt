@@ -1,0 +1,9 @@
+32-bit, 4KB pages: entries = 1048576  size @4B/entry = 4096 KB per process
+48-bit, 4KB pages: entries = 68719476736  size @8B/entry = 512.0 GiB per process (flat table)
+EAT without TLB = 200 ns (two memory accesses, single level)
+EAT with TLB hit 80% = 130.0 ns
+EAT with TLB hit 95% = 115.0 ns
+EAT with TLB hit 99% = 111.0 ns
+1KB: total internal fragmentation = 46.9 KB, average 0.47 KB/process
+4KB: total internal fragmentation = 191.9 KB, average 1.92 KB/process
+2MB: total internal fragmentation = 98555.9 KB, average 985.56 KB/process

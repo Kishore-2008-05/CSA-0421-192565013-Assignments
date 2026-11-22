@@ -1,0 +1,45 @@
+== sizes
+15152 libenc.so
+16344 main_dynamic
+785536 main_static
+== ldd dynamic
+	linux-vdso.so.1 (0x00007f608c670000)
+	libenc.so => /home/claude/CO3/Q1/./libenc.so (0x00007f608c65e000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f608c400000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f608c672000)
+== ldd static
+	not a dynamic executable
+== run dynamic (v1)
+library version 1, first byte of ciphertext 0x48
+55d87443c000-55d87443d000 r--p 00000000 fe:00 434220                     /home/claude/CO3/Q1/main_dynamic
+55d87443d000-55d87443e000 r-xp 00001000 fe:00 434220                     /home/claude/CO3/Q1/main_dynamic
+55d87443e000-55d87443f000 r--p 00002000 fe:00 434220                     /home/claude/CO3/Q1/main_dynamic
+55d87443f000-55d874440000 r--p 00002000 fe:00 434220                     /home/claude/CO3/Q1/main_dynamic
+55d874440000-55d874441000 rw-p 00003000 fe:00 434220                     /home/claude/CO3/Q1/main_dynamic
+7f29b2400000-7f29b2428000 r--p 00000000 fe:00 115719                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f29b2428000-7f29b25b1000 r-xp 00028000 fe:00 115719                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f29b25b1000-7f29b2600000 r--p 001b1000 fe:00 115719                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f29b2600000-7f29b2604000 r--p 001ff000 fe:00 115719                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f29b2604000-7f29b2606000 rw-p 00203000 fe:00 115719                     /usr/lib/x86_64-linux-gnu/libc.so.6
+7f29b26b4000-7f29b26b5000 r--p 00000000 fe:00 434219                     /home/claude/CO3/Q1/libenc.so
+7f29b26b5000-7f29b26b6000 r-xp 00001000 fe:00 434219                     /home/claude/CO3/Q1/libenc.so
+7f29b26b6000-7f29b26b7000 r--p 00002000 fe:00 434219                     /home/claude/CO3/Q1/libenc.so
+7f29b26b7000-7f29b26b8000 r--p 00002000 fe:00 434219                     /home/claude/CO3/Q1/libenc.so
+7f29b26b8000-7f29b26b9000 rw-p 00003000 fe:00 434219                     /home/claude/CO3/Q1/libenc.so
+7ffefeefc000-7ffefef1d000 rw-p 00000000 00:00 0                          [stack]
+== run static
+library version 1, first byte of ciphertext 0x48
+== dlopen
+loaded at run time: version 1, byte0 0x48
+== replace library with v2, NO recompile
+library version 2, first byte of ciphertext 0x3e
+== static binary unchanged after library update
+library version 1, first byte of ciphertext 0x48
+== missing library
+./main_dynamic: error while loading shared libraries: libenc.so: cannot open shared object file: No such file or directory
+exit=127
+dlopen failed: ./libenc.so: cannot open shared object file: No such file or directory
+(graceful fallback: encryption disabled)
+== startup time and peak RSS (python-measured, 1000 runs each)
+./main_static: 0.677 ms/run, maxrss 8476 KB
+./main_dynamic: 0.872 ms/run, maxrss 8476 KB

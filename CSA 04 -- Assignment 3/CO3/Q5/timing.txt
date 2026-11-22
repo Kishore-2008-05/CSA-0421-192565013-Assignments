@@ -1,0 +1,5 @@
+Time for 100000 references, 8 frames (average of 200 runs)
+FIFO   2.146 ms
+LRU    2.496 ms
+OPT    2.618 ms
+CLOCK  2.535 ms

@@ -1,0 +1,10 @@
+page size 4096 bytes
+sequential first touch: 16386 faults for 16384 pages, 23.0 ms
+random re-touch (already resident): 1 faults, 0.5 ms
+random first touch: 10372 faults, 16.1 ms
+COW: parent RSS before fork 108772 KB
+COW child: RSS before write 107932 KB, after write 108052 KB, write faults 16384
+EAT fault rate 1e-03 = 8099.9 ns
+EAT fault rate 1e-05 = 180.0 ns
+EAT fault rate 1e-06 = 108.0 ns
+max fault rate for 10% slowdown: 1.250e-06

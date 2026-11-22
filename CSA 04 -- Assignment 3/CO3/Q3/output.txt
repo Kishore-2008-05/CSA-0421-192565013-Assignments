@@ -1,0 +1,9 @@
+(0,0) -> physical 1000 (code)
+(0,399) -> physical 1399 (code)
+(0,400) -> trap: offset 400 >= limit 400 (code)
+(1,50) -> physical 6350 (data)
+(2,1099) -> physical 5399 (stack)
+(2,1100) -> trap: offset 1100 >= limit 1100 (stack)
+(3,999) -> physical 4199 (heap)
+(4,0) -> invalid segment
+SIGSEGV caught: kernel delivered signal 11 after the MMU raised an invalid-access fault
