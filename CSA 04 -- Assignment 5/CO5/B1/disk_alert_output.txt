@@ -1,0 +1,2 @@
+ALERT: /dev/vda is 40% full (mounted on /)
+disk check finished (threshold 30%)

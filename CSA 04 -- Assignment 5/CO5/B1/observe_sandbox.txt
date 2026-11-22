@@ -1,0 +1,14 @@
+$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           3.9Gi       198Mi       3.8Gi        12Mi        67Mi       3.7Gi
+Swap:             0B          0B          0B
+$ df -h /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda        252G  6.6G   10G  40% /
+$ vmstat 1 2
+procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st gu
+ 0  0      0 3971116   5756  63896    0    0  1663     0   82    1  1  2 97  0  0  0
+ 0  0      0 3971116   5756  63984    0    0     0     0   26   30  0  0 100  0  0  0
+$ ss -tuln | head -5
+/bin/sh: 79: ss: not found

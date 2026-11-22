@@ -1,0 +1,3 @@
+startup to first successful /health: 0.18 s
+2000 requests, 8 threads: 1568 requests/s (Flask dev server, loopback, python client)
+server RSS: 31964 kB

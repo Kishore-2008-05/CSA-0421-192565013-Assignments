@@ -1,0 +1,4 @@
+Assumptions: 5 HTTP requests per student, peak = 5x the average rate
+Average load = 104 req/s; peak design load = 521 req/s
+as measured (unrealistic: dev server, no DB): 1568 req/s per container -> 1 containers (+1 spare)
+derated to 10% for DB + TLS + 500m CPU limit (assumption): 157 req/s per container -> 4 containers (+1 spare)

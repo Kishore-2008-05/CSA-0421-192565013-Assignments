@@ -1,0 +1,3 @@
+# m h dom mon dow  command
+0 * * * *  /opt/portal/log_summary.sh >> /var/log/portal/log_summary.log 2>&1
+*/15 * * * *  /opt/portal/disk_alert.sh 80 >> /var/log/portal/disk_alert.log 2>&1

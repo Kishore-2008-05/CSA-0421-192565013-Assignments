@@ -1,0 +1,14 @@
+[Unit]
+Description=Campus result portal (gunicorn)
+After=network.target
+
+[Service]
+User=portal
+Group=portal
+WorkingDirectory=/opt/portal
+ExecStart=/usr/bin/gunicorn --bind 127.0.0.1:8000 app:app
+Restart=on-failure
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
