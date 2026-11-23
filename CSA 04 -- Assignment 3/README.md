@@ -1,8 +1,8 @@
 # CO3 – Memory Management (Register No. 192565013)
 
 **Student:** Kishore Kumar S  
-**Compiler:** GCC (record your own `gcc --version`)  
-**OS:** Ubuntu on WSL (record `lsb_release -a`, `uname -a` and `getconf PAGESIZE`).
+Compiler: gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0
+Linux distribution/version: 26.04.1 LTS (Resolute Raccoon)"
 
 ## Programs
 - Task01: static/object linking, shared-library linking and runtime `dlopen/dlsym`.
