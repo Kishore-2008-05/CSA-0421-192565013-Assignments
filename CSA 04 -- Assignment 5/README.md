@@ -2,8 +2,8 @@
 
 **Student:** Kishore Kumar S  
 **Register number:** 192565013  
-**Compiler:** GCC (record your local `gcc --version`)  
-**OS:** Ubuntu on WSL (record `lsb_release -a` and `uname -a`).
+**Compiler:** gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0
+**Linux distribution/version:** 26.04.1 LTS (Resolute Raccoon)"
 
 ## Build and run the sample portal
 ```bash
