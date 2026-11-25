@@ -25,3 +25,6 @@ See `COMPLETE_WRITTEN_REPORT.md` for all seven questions, evaluation, alternativ
 
 ## Evidence still to collect locally
 Record timings, RSS/PSS, page faults, real page size, disk/RAID and WSL system details on your own machine. Run each program and save terminal screenshots in the matching Task folder. Values depending on local hardware are not fabricated in this repository.
+
+## Formatted report
+[Open formatted report](ASSIGNMENT_3_REPORT.html)
