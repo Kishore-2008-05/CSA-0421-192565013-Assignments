@@ -26,3 +26,6 @@ kubectl scale deployment/result-portal --replicas=6
 
 ## Evidence
 TaskB1 includes log summary and disk alert scripts plus cron examples. TaskB2 includes Dockerfile, app and Compose. TaskB3 includes portal/LMS deployments with CPU/memory limits and a load-test helper. The complete report contains design and experimental procedures. Docker/VM/Kubernetes tests and genuine screenshots must be collected on the student's own machine/cluster; they are not claimed as completed here.
+
+## Formatted report
+[Open formatted report](ASSIGNMENT_5_REPORT.html)
