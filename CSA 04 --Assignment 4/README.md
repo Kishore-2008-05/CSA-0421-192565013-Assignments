@@ -15,3 +15,6 @@ Task02 contains first-fit/indexed allocation and inode/bitmap calculations. Task
 For filesystem inspection use `stat`, `df -i`, `ls -i`, `findmnt -T .`; use `tune2fs -l` only after identifying an ext filesystem device. For disk scheduler evidence use `lsblk` and `cat /sys/block/<device>/queue/scheduler`.
 
 See `COMPLETE_WRITTEN_REPORT.md` for all six task answers, calculations, comparisons and experiment instructions. Hardware-specific measurements and screenshots from the student's own WSL remain to be added.
+
+## Formatted report
+[Open formatted report](ASSIGNMENT_4_REPORT.html)
